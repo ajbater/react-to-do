@@ -8,11 +8,11 @@ export default class ToDoList extends React.Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
   render() {
-    <section className="main">
+    return <section className="main">
       <ul className="todo-list">
-        {this.props.todos.map(item=>
+        {this.props.todos.map(item =>
           <ToDoItem key={item.get('text')}
-                    key="item.get('text')" />
+                    text={item.get('text')} />
         )}
       </ul>
     </section>
