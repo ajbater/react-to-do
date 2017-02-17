@@ -14,4 +14,4 @@ export default class ToDoItem extends React.Component {
       <TextInput />
       </li>
   }
-}
+};

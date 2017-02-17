@@ -12,4 +12,4 @@ export default class ToDoList extends React.Component {
       </ul>
     </section>
   }
-}
+};
