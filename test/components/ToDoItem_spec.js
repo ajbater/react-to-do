@@ -47,7 +47,7 @@ describe('ToDoItem', () => {
       <ToDoItem text={text2} isCompleted={false}/>
     );
     const input = scryRenderedDOMComponentsWithTag(component, 'input');
-    
+
     expect(input[0].checked).to.equal(true);
     expect(input[1].checked).to.equal(false);
   });
@@ -55,7 +55,6 @@ describe('ToDoItem', () => {
   it('invokes a callback when the delete button is clicked', () => {
     const text = 'React';
     var deleted = false;
-
     // a mocked deleteItem function
     const deleteItem = () => deleted = true;
     const component = renderIntoDocument(
@@ -66,5 +65,31 @@ describe('ToDoItem', () => {
 
     // we expect that the deleteItem function has been called
     expect(deleted).to.equal(true);
+  });
+
+  it('invokes callback when checkbox is clicked', () => {
+    const text = 'React';
+    var isChecked = false;
+    // a mocked toggleComplete function
+    const toggleComplete = () => isChecked = true;
+    const component = renderIntoDocument(
+      <ToDoItem text={text} toggleComplete={toggleComplete}/>
+    );
+    const checkboxes = scryRenderedDOMComponentsWithTag(component, 'input');
+    Simulate.click(checkboxes[0]);
+
+    expect(isChecked).to.equal(true);
+  });
+
+  it('invokes a callback when the text is double clicked', () => {
+    var text = 'React';
+    const editItem = () => text = 'Redux';
+    const component = renderIntoDocument(
+      <ToDoItem text={text} editItem={editItem}/>
+    );
+    const label = component.refs.text
+    Simulate.doubleClick(label);
+
+    expect(text).to.equal('Redux');
   });
 });
