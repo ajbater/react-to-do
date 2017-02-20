@@ -24,4 +24,20 @@ describe('ToDoList', () => {
     expect(items[0].textContent).to.contain('React');
     expect(items[1].textContent).to.contain('Redux');
   });
+
+  it('renders a list with only completed items if the filter is completed', () => {
+    const todos = List.of(
+      Map({id: 1, text: 'React', status: 'active'}),
+      Map({id: 2, text: 'Redux', status: 'active'}),
+      Map({id: 3, text: 'Immutable', status: 'completed'})
+    );
+    const filter = 'completed';
+    const component = renderIntoDocument(
+      <ToDoList filter={filter} todos={todos} />
+    );
+    const items = scryRenderedDOMComponentsWithTag(component, 'li');
+
+    expect(items.length).to.equal(1);
+    expect(items[0].textContent).to.equal('Immutable');
+  });
 });
