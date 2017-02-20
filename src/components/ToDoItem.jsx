@@ -11,7 +11,8 @@ export default class ToDoItem extends React.Component {
   render() {
     var itemClass = classNames({
       'todo': true,
-      'completed': this.props.isCompleted
+      'completed': this.props.isCompleted,
+      'editing': this.props.isEditing
     });
     return <li className={itemClass}>
       <div className="view">
