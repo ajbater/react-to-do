@@ -31,7 +31,7 @@ export default class ToDoList extends React.Component {
                     isEditing={item.get('editing')}
                     toggleComplete={this.props.toggleComplete}
                     deleteItem={this.props.deleteItem}
-                    editItem={this.props.editItem}/>
+                    editItem={this.props.editItems}/>
         )}
       </ul>
     </section>
