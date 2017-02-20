@@ -1,5 +1,6 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import classNames from 'classnames';
 import TextInput from './TextInput';
 
 export default class ToDoItem extends React.Component {
@@ -8,7 +9,11 @@ export default class ToDoItem extends React.Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
   render() {
-    return <li className="todo">
+    var itemClass = classNames({
+      'todo': true,
+      'completed': this.props.isCompleted
+    });
+    return <li className={itemClass}>
       <div className="view">
         <input type="checkbox"
           className="toggle"/>
