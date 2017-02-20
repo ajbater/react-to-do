@@ -17,12 +17,18 @@ export default class ToDoList extends React.Component {
     return [];
   }
 
+  isCompleted(item) {
+    return item.get('status') === 'completed';
+  }
+
   render() {
     return <section className="main">
       <ul className="todo-list">
         {this.getItems().map(item =>
           <ToDoItem key={item.get('text')}
-                    text={item.get('text')} />
+                    text={item.get('text')}
+                    isCompleted={this.isCompleted(item)}
+                    isEditing={item.get('editing')}/>
         )}
       </ul>
     </section>

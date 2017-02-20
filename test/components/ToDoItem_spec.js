@@ -37,4 +37,16 @@ describe('ToDoItem', () => {
 
     expect(todo[0].classList.contains('editing')).to.equal(true);
   });
+
+  it('should be checked if the item is completed', () => {
+    const text = 'React';
+    const text2 = 'Redux';
+    const component = renderIntoDocument(
+      <ToDoItem text={text} isCompleted={true}/>,
+      <ToDoItem text={text2} isCompleted={false}/>
+    );
+    const input = scryRenderedDOMComponentsWithTag(component, 'input');
+    expect(input[0].checked).to.equal(true);
+    expect(input[1].checked).to.equal(false);
+  });
 });
