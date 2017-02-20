@@ -22,7 +22,8 @@ export default class ToDoItem extends React.Component {
         <label htmlFor="todo">
           {this.props.text}
         </label>
-        <button className="destroy"></button>
+        <button className="destroy"
+                onClick={() => this.props.deleteItem(this.props.id)}></button>
       </div>
       <TextInput />
       </li>

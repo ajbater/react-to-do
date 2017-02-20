@@ -4,7 +4,8 @@ import ToDoItem from '../../src/components/ToDoItem';
 import {expect} from 'chai';
 
 const {renderIntoDocument,
-       scryRenderedDOMComponentsWithTag} = TestUtils;
+       scryRenderedDOMComponentsWithTag,
+       Simulate} = TestUtils;
 
 describe('ToDoItem', () => {
   it('renders an item', () => {
@@ -46,7 +47,24 @@ describe('ToDoItem', () => {
       <ToDoItem text={text2} isCompleted={false}/>
     );
     const input = scryRenderedDOMComponentsWithTag(component, 'input');
+    
     expect(input[0].checked).to.equal(true);
     expect(input[1].checked).to.equal(false);
+  });
+
+  it('invokes a callback when the delete button is clicked', () => {
+    const text = 'React';
+    var deleted = false;
+
+    // a mocked deleteItem function
+    const deleteItem = () => deleted = true;
+    const component = renderIntoDocument(
+      <ToDoItem text={text} deleteItem={deleteItem}/>
+    );
+    const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
+    Simulate.click(buttons[0]);
+
+    // we expect that the deleteItem function has been called
+    expect(deleted).to.equal(true);
   });
 });
